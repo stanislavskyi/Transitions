@@ -23,18 +23,18 @@ class RecyclerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val items = listOf("Item 1", "Item 2", "Item 3")
+        val items = listOf("Item 1", "Item 2", "Item 3", "Item 4","Item 5","Item 6","Item 7","Item 8","Item 9",)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = ItemAdapter(items) { imageView, title ->
-            //val fragment = DetailFragment.newInstance(title)
+
             val fragment = DetailFragment.newInstance(imageView.transitionName)
             exitTransition = MaterialElevationScale(false).apply {
-                duration = 600L
+                duration = 200L
             }
             reenterTransition = MaterialElevationScale(true).apply {
-                duration = 600L
+                duration = 200L
             }
 
             fragment.sharedElementEnterTransition = MaterialContainerTransform().apply {
@@ -44,7 +44,6 @@ class RecyclerFragment : Fragment() {
 
             Log.d("transitionName", imageView.transitionName)
             parentFragmentManager.beginTransaction()
-                //.addSharedElement(imageView, imageView.transitionName)
 
                 .addSharedElement(imageView, imageView.transitionName)
                 .replace(R.id.fragment_container, fragment)
